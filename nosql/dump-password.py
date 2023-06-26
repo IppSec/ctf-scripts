@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# The creation of this script was done in: https://www.youtube.com/watch?v=6mkZy8vZ82M
+# Author: Ippsec
+
 import requests
 import string
 
