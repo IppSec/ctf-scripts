@@ -6,9 +6,8 @@ import requests
 import string
 
 def test_login(payload):    
-    proxies={"http":"http://127.0.0.1:8080"}
     url = 'http://dev.stocker.htb/login'
-    r = requests.post(url, json=payload, proxies=proxies)
+    r = requests.post(url, json=payload)
     r.raise_for_status()
     if "error" in r.text:
         return False
