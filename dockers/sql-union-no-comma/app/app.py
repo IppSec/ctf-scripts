@@ -4,8 +4,6 @@ from flask_bcrypt import Bcrypt
 import json
 from flask import jsonify
 
-#from flask_pydantic import validate
-
 from database import db, Users, Posts
 from models import NameModel
 from utils import validate_username
@@ -37,7 +35,7 @@ def post(post_id):
 @validate_username
 def author(username: str, query: dict):
     # Validate the username parameter
-    user = db.session.execute(text(f"SELECT * FROM users WHERE username = '{username}'")).first()        
+    user = db.session.execute(text(f"SELECT * FROM users WHERE username = '{username}'")).first()
     return json.dumps(user, default=str)
 
 # Create a route to add a new user
@@ -64,4 +62,4 @@ def add_post():
     return
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=False)
