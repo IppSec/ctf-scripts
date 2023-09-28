@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 from flask_bcrypt import Bcrypt
 import json
 from flask import jsonify
+import html
 
 from database import db, Users, Posts
 from models import NameModel
