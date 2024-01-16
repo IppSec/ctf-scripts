@@ -45,7 +45,7 @@ def startCrawl(func, parent, file):
             link = link.lstrip("/")
             if link.endswith(".."):
                 continue
-            if (link not in crawled) and (link not in queue):
+            if (link not in crawled | queue):
                 queue.add(link)
                 logging.debug(f"Added {link} to queue")       
 
