@@ -1,4 +1,3 @@
-import fd
 import re
 import logging
 import os
@@ -49,6 +48,7 @@ def startCrawl(func, parent, file):
                 queue.add(link)
                 logging.debug(f"Added {link} to queue")       
 
+import fd
 startCrawl(fd.downloadFile, "/var/www/html/", "index.php")
 
 
