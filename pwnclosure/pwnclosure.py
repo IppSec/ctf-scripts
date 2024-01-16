@@ -31,24 +31,29 @@ def saveFile(fullPath, content):
 # ToDo: Automatically identify parent based upon webserver config
 # func = a call to download src
 def startCrawl(func, parent, file):    
+    # Create our queue + previous work. Making them a set to prevent dups    
     crawled = set()
     queue = {file}
+
     while queue:
+        # Get the item, then remove it from the queue
         page = queue.pop()
         crawled.add(page)
+        # We are dealing with FileDisclosure, it's best to store the full file
         fullPath = parent + page
         output = func(fullPath)
+        # ToDo: Probably need to check for 404 here
         saveFile(fullPath, output)
         links = getLinks(output)
         for link in links:
+            # Any link that begins with / or is .., can screw with our file write/dupe check
             link = link.lstrip("/")
             if link.endswith(".."):
                 continue
             if (link not in crawled | queue):
+                # This is new to us, add it to the queue
                 queue.add(link)
-                logging.debug(f"Added {link} to queue")       
+                logging.debug(f"Added {link} to queue")    
 
 import fd
 startCrawl(fd.downloadFile, "/var/www/html/", "index.php")
-
-
